@@ -1,0 +1,47 @@
+version: '3.8'
+
+services:
+  mongodb:
+    image: mongo:latest
+    container_name: mongo
+    ports:
+      - "27017:27017"
+    networks:
+      - revelate-network
+    volumes:
+      - mongo-data:/data/db
+
+  elasticsearch:
+    image: elasticsearch:8.6.0
+    container_name: elasticsearch
+    environment:
+      - discovery.type=single-node
+    ports:
+      - "9200:9200"
+    networks:
+      - revelate-network
+    volumes:
+      - es-data:/usr/share/elasticsearch/data
+    
+  app:
+    build: 
+      context: .
+    container_name: revelate
+    ports:
+      - "3000:3000"
+    networks:
+      - revelate-network
+    depends_on:
+      - mongo
+      - elasticsearch
+    volumes:
+      - .:/app
+
+networks:
+  revelate-network:
+    driver: bridge
+
+volumes:
+  mongo-data:
+  es-data:
+
