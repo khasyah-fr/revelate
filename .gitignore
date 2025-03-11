@@ -1,2 +1,8 @@
 node_modules/
 .env
+firebaseServiceAccountKey.json
+.firebaserc
+
+functions/node_modules
+functions/.env
+functions/firebaseServiceAccountKey.json

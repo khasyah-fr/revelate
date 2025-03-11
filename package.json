@@ -17,6 +17,7 @@
     "express": "^4.21.2",
     "firebase": "^11.4.0",
     "firebase-admin": "^13.2.0",
+    "firebase-tools": "^13.33.0",
     "mongoose": "^8.12.1"
   }
 }
